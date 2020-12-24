@@ -31,7 +31,7 @@ addLayer("T", {
         11:{
             title:"Micro Bots",
             description:"Make the data conversion more efficient",
-            cost:new Decimal(10)
+            cost:new Decimal(6)
         }
     }
 })
