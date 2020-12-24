@@ -8,8 +8,8 @@ addLayer("T", {
     }},
     color: "#4BDC13",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
-    resource: "prestige points", // Name of prestige currency
-    baseResource: "points", // Name of resource prestige is based on
+    resource: "Transistors", // Name of prestige currency
+    baseResource: "bits", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
@@ -24,5 +24,14 @@ addLayer("T", {
     hotkeys: [
         {key: "t", description: "T: Convert your bits into transistors", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}
+    layerShown(){return true},
+    upgrades:{
+        rows:1,
+        cols:2,
+        11:{
+            title:"Micro Bots",
+            description:"Make the data conversion more efficient",
+            cost:new Decimal(10)
+        }
+    }
 })
