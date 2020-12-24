@@ -13,7 +13,7 @@ addLayer("T", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent(){
-        if(getBuyableAmoute(this.layer,11).gte(1)){
+        if(getBuyableAmount(this.layer,11).gte(1)){
             return 0.5/(1+(1/10*getBuyableAmoute(this.layer,11)))
         }
     }, // Prestige currency exponent
@@ -37,7 +37,7 @@ addLayer("T", {
             display() { return "Blah" },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             description:"Make the data conversion more efficient",
-            cost(x) { return new Decimal(1).mul(x || getBuyableAmt(this.layer, this.id)) },
+            cost(x) { return new Decimal(1).mul(x || getBuyableAmount(this.layer, this.id)) },
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))
