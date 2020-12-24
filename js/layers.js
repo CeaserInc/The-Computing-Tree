@@ -31,7 +31,10 @@ addLayer("T", {
         11:{
             title:"Micro Bots",
             description:"Make the data conversion more efficient",
-            cost:new Decimal(6)
+            cost:new Decimal(6),
+            onPurchase(){
+                T.exponent=Decimal.div(T.exponent,1.5);
+            }
         }
     }
 })
