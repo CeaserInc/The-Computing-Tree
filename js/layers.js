@@ -34,7 +34,7 @@ addLayer("T", {
         cols:2,
         11:{
             title:"Micro Bots",
-            display() { return "Blah" },
+            display() { return "Make the data conversion more efficient\n"+this.cost; },
             canAfford() { return player[this.layer].points.gte(this.cost()) },
             description:"Make the data conversion more efficient",
             cost(x) { return new Decimal(1).mul(x || getBuyableAmount(this.layer, this.id)) },
