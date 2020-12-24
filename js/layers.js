@@ -40,7 +40,7 @@ addLayer("T", {
             cost(x) { return new Decimal(1).mul(x || getBuyableAmount(this.layer, this.id)) },
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost())
-                setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
         }
     }
