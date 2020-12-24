@@ -12,7 +12,11 @@ addLayer("T", {
     baseResource: "bits", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 0.5, // Prestige currency exponent
+    exponent(){
+        if(hasUpgrades(this.layer,11)){
+
+        }
+    }, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         return mult
@@ -25,16 +29,19 @@ addLayer("T", {
         {key: "t", description: "T: Convert your bits into transistors", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
-    upgrades:{
+    buyables:{
         rows:1,
         cols:2,
         11:{
             title:"Micro Bots",
+            display() { return "Blah" },
+            canAfford() { return player[this.layer].points.gte(this.cost()) },
             description:"Make the data conversion more efficient",
-            cost:new Decimal(6),
-            onPurchase(){
-                T.exponent=Decimal.div(T.exponent,1.5);
-            }
+            cost(x) { return new Decimal(1).mul(x || getBuyableAmt(this.layer, this.id)) },
+            buy() {
+                player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmt(this.layer, this.id).add(1))
+            },
         }
     }
 })
