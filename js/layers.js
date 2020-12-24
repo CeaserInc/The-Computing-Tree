@@ -13,7 +13,7 @@ addLayer("T", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent(){
-        if(hasUpgrades(this.layer,11)){
+        if(hasUpgrade(this.layer,11)){
 
         }
     }, // Prestige currency exponent
