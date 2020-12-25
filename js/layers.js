@@ -39,7 +39,7 @@ addLayer("T", {
             display() { return "<p>Make the data conversion more efficient\n</p>"+"Cost: "+this.cost(); },
             canAfford() { return player[this.layer].points.gte(this.cost(getBuyableAmount(this.layer, 11))) },
             description:"Make the data conversion more efficient",
-            cost(x) { return new Decimal(1).mul(x || getBuyableAmount(this.layer, this.id)) },
+            cost(x) { return new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)) },
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
