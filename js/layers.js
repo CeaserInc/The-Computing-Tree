@@ -14,7 +14,7 @@ addLayer("T", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent(){
         if(getBuyableAmount(this.layer,11).gte(1)){
-            return new Decimal.add(1,Decimal.mul(0.5,Decimal.add(Decimal.mul(0.2,getBuyableAmount(this.layer, 11)),1)))
+            return new Decimal.add(1,Decimal.mul(0.5,Decimal.add(Decimal.mul(0.1,getBuyableAmount(this.layer, 11)),1)))
         }else{
             return new Decimal(1.5);
         }
