@@ -40,10 +40,10 @@ addLayer("T", {
             canAfford() { return player[this.layer].points.gte(this.cost(getBuyableAmount(this.layer, 11))) },
             description:"Make the data conversion more efficient",
             cost(x) { 
-                if(layers.T.exponent<=3){
+                if(layers.T.exponent.lte(3)){
                     return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),2)) 
                 }else{
-                    return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),4))
+                    return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),4++))
                 }
             },
             buy() {
