@@ -30,10 +30,11 @@ addLayer("T", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         if(hasUpgrade(this.layer,11)){
             multi=new Decimal(3)
+            return mult
         }else{
             mult = new Decimal(1)
+            return mult
         }
-        return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
