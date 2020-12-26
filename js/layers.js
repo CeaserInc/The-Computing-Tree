@@ -28,7 +28,7 @@ addLayer("T", {
         }
     }, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        if(hasUpgrade(this.layer,11)){
+        if(hasUpgrade(this.layer,11)==true){
             var multi=new Decimal(3)
             return mult
         }else{
