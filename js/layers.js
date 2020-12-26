@@ -39,7 +39,13 @@ addLayer("T", {
             display() { return "<p>Make the data conversion more efficient\n</p>"+"Cost: "+this.cost(); },
             canAfford() { return player[this.layer].points.gte(this.cost(getBuyableAmount(this.layer, 11))) },
             description:"Make the data conversion more efficient",
-            cost(x) { return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),2)) },
+            cost(x) { 
+                if(layers.T.exponent<=3){
+                    return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),2)) 
+                }else{
+                    return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),4))
+                }
+            },
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
