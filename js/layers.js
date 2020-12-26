@@ -13,14 +13,26 @@ addLayer("T", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent(){
-        if(getBuyableAmount(this.layer,11).gte(1)){
-            return new Decimal.add(1,Decimal.mul(0.5,Decimal.add(Decimal.mul(0.1,getBuyableAmount(this.layer, 11)),1)))
+            if(hasUpgrade(this.layer,11)){
+            if(getBuyableAmount(this.layer,11).gte(1)){
+                return new Decimal.add(1,Decimal.mul(0.5,Decimal.add(Decimal.mul(0.1,getBuyableAmount(this.layer, 11))-0.05,1)))
+            }else{
+                return new Decimal(1.5);
+            }
         }else{
-            return new Decimal(1.5);
+            if(getBuyableAmount(this.layer,11).gte(1)){
+                return new Decimal.add(1,Decimal.mul(0.5,Decimal.add(Decimal.mul(0.1,getBuyableAmount(this.layer, 11)),1)))
+            }else{
+                return new Decimal(1.5);
+            }
         }
     }, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+        if(hasUpgrade(this.layer,11)){
+            multi=new Decimal(3)
+        }else{
+            mult = new Decimal(1)
+        }
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -33,11 +45,11 @@ addLayer("T", {
     layerShown(){return true},
     buyables:{
         rows:1,
-        cols:2,
+        cols:1,
         11:{
             title:"Micro Bots",
             display() { return "<p>Make the data conversion more efficient\n</p>"+"Cost: "+this.cost(); },
-            canAfford() { return player[this.layer].points.gte(this.cost(getBuyableAmount(this.layer, 11))) },
+            canAfford() { return player[this.layer].points.gte(this.cost(getBuyableAmount(this.layer, this.id))) },
             description:"Make the data conversion more efficient",
             cost(x) { 
                 if(layers.T.exponent().lte(3)){
@@ -50,6 +62,15 @@ addLayer("T", {
                 player[this.layer].points = player[this.layer].points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
             },
+        }
+    },
+    upgrades:{
+        rows:1,
+        cols:4,
+        11:{
+            title:"Core Computing",
+            display(){ return "<h3>Triple bit rate, but make data transfer worse\n</h3>"+"Cost: "+this.cost},
+            cost:new Decimal(10)
         }
     }
 })
