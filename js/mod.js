@@ -38,10 +38,12 @@ function canGenPoints(){
 
 // Calculate points/sec!
 function getPointGen() {
-	if(!canGenPoints())
-		return new Decimal(0)
-
 	let gain = new Decimal(1)
+	if(!canGenPoints()){
+		return new Decimal(0)
+	}else if(hasUpgrade(layers.T,11)){
+		gain=gain*3
+	}
 	return gain
 }
 

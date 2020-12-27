@@ -54,10 +54,10 @@ addLayer("T", {
             description:"Make the data conversion more efficient",
             cost(x) { 
                 if(layers.T.exponent().lte(3)){
-                    return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),2)) 
-                }else{
-                    return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),4))
-                }
+                    return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),2))
+                }else if(layers.T.exponent().gte(4)){
+                    return new Decimal.round(Decimal.pow(new Decimal(1.5).mul(x || getBuyableAmount(this.layer, this.id)),8))
+                } 
             },
             buy() {
                 player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -70,8 +70,19 @@ addLayer("T", {
         cols:4,
         11:{
             title:"Core Computing",
-            display(){ return "<h3>Triple bit rate, but make data transfer worse\n</h3>"+"Cost: "+this.cost},
+            display(){ return ("Make Transfer rate better\n"+"Cost: "+this.cost)},
             cost:new Decimal(10)
+        },
+        12:{
+            title:"Micro Micro Processing",
+            display(){ return ("Double bit rate, but make data transfer worse \n"+"Cost: "+this.cost)},
+            cost:new Decimal(40)
+        },
+        13:{
+
+        },
+        14:{
+
         }
     }
 })
