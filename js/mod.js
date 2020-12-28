@@ -41,7 +41,7 @@ function getPointGen() {
 	let gain = new Decimal(1)
 	if(!canGenPoints()){
 		return new Decimal(0)
-	}else if(hasUpgrade(this.layer,11)){
+	}else if(hasUpgrade(this.layer,12)){
 		gain=gain.mul(3);
 	}
 	return gain
