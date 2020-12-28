@@ -15,7 +15,7 @@ addLayer("T", {
     exponent(){
             if(hasUpgrade(this.layer,12)){
             if(getBuyableAmount(this.layer,11).gte(1)){
-                return new Decimal.add(1,Decimal.mul(0.5,Decimal.add(Decimal.mul(0.1,getBuyableAmount(this.layer, 11))-0.1,1)))
+                return new Decimal.add(0.1,Decimal.mul(0.5,Decimal.add(Decimal.mul(0.1,getBuyableAmount(this.layer, 11)),0.3)))
             }else{
                 return new Decimal(1.5);
             }
