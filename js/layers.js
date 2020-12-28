@@ -13,9 +13,9 @@ addLayer("T", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent(){
-            if(hasUpgrade(this.layer,11)){
+            if(hasUpgrade(this.layer,12)){
             if(getBuyableAmount(this.layer,11).gte(1)){
-                return new Decimal.add(1,Decimal.mul(0.5,Decimal.add(Decimal.mul(0.1,getBuyableAmount(this.layer, 11))-0.05,1)))
+                return new Decimal.add(1,Decimal.mul(0.5,Decimal.add(Decimal.mul(0.1,getBuyableAmount(this.layer, 11))-0.1,1)))
             }else{
                 return new Decimal(1.5);
             }
@@ -70,7 +70,7 @@ addLayer("T", {
         cols:4,
         11:{
             title:"Core Computing",
-            display(){ return ("Make Transfer rate better\n"+"Cost: "+this.cost)},
+            description:"Increase transfer amount",
             cost:new Decimal(10)
         },
         12:{
