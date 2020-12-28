@@ -42,7 +42,7 @@ function getPointGen() {
 	if(!canGenPoints()){
 		return new Decimal(0)
 	}else if(hasUpgrade(this.layer,11)){
-		gain=gain*3
+		gain=gain.mul(3);
 	}
 	return gain
 }
