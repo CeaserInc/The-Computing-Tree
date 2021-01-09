@@ -1,9 +1,9 @@
 let modInfo = {
 	name: "The Computing Tree",
 	id: "mymod",
-	author: "nobody",
+	author: "ceaserinc",
 	pointsName: "bits",
-	discordName: "",
+	discordName: "Emperor Augustus Caesar#5603",
 	discordLink: "",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	

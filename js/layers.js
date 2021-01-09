@@ -4,7 +4,8 @@ addLayer("T", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
+        points: new Decimal(0),
+        bugs:new Decimal(0)
     }},
     color: "#4BDC13",
     requires: new Decimal(8), // Can be a function that takes requirement increases into account
@@ -75,11 +76,13 @@ addLayer("T", {
         },
         12:{
             title:"Micro Micro Processing",
-            display(){ return ("Double bit rate, but make data transfer worse \n"+"Cost: "+this.cost)},
+            description:"Double bit rate, but make data transfer worse",
             cost:new Decimal(40)
         },
         13:{
-
+            title:"CPU",
+            description:"Double bit rate, but start making bugs",
+            cost:new Decimal(40)
         },
         14:{
 
